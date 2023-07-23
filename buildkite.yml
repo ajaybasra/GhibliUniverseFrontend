@@ -4,3 +4,11 @@ steps:
     command: 'echo hello, engineer'
     agents:
       queue: fma-dev
+
+  - wait
+
+  - label: ':docker: Building Image and Pushing to Cloudsmith'
+    branches: 'main'
+    command: ./scripts/build-and-push.sh
+    agents:
+      queue: fma-dev 
