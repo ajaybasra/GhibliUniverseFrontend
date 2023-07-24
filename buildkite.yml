@@ -12,3 +12,9 @@ steps:
     command: ./scripts/build-and-push.sh
     agents:
       queue: fma-dev 
+
+  - label: ":k8s: Deploy to Europa Pre-Prod"
+    command: ./scripts/deploy.sh
+    branches: main
+    agents:
+      queue: "europa-preprod-fma" 
