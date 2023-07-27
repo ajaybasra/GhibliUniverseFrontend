@@ -1,11 +1,10 @@
 import axios from "axios";
+import config from "./config";
 
-const apiPath = "https://localhost:7212/Film"
+const apiPath = config.apiEndpoint;
 
 function getAllFilms() {
-    return axios.get(`${apiPath}`)
+  return axios.get(`${apiPath}/Film`);
 }
 
-export {
-    getAllFilms,
-};
+export { getAllFilms };
