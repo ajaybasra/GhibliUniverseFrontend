@@ -1,6 +1,3 @@
-#!/usr/bin/env bash
-set -euo pipefail
-
 if [ "$ENV" = "production" ]; then 
     echo "Building for production environment..."
     npm run build
