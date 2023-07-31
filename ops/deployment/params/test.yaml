@@ -1,6 +1,6 @@
 repo: ajay-ghibli-frontend
 name: ghibliuniverse-frontend-test
 namespace: fma
-image: docker.myob.com/future-makers-academy/ajay-ghibli-frontend
+image: docker.myob.com/future-makers-academy/ajay-ghibli-frontend-test
 containerPort: "80"
 host: ghibliuniverse-frontend-test.svc.platform.myobdev.com
