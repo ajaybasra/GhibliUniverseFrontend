@@ -9,7 +9,7 @@ steps:
 
   - label: ":docker: Building Test Image and Pushing to Cloudsmith"
     command: ops/scripts/build-and-push.sh
-    branches: "main"
+    # branches: "main"
     env:
       ENVIRONMENT: "test"
     agents:
@@ -19,7 +19,7 @@ steps:
 
   - label: ":k8s: Deploy to test"
     command: ops/scripts/deploy.sh
-    branches: main
+    # branches: main
     env:
       ENVIRONMENT: "test"
     agents:
