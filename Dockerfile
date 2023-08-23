@@ -16,6 +16,9 @@ RUN npm install
 # Copy the app's source code to the container
 COPY . .
 
+FROM base as test
+RUN npm test -- --watchAll=false
+
 # Build the React app for production
 FROM base as build
 RUN chmod u+x ./ops/scripts/build.sh && ./ops/scripts/build.sh

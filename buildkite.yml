@@ -1,15 +1,15 @@
 ---
 steps:
-  - label: "do not panic :cherry_blossom::whale:"
-    command: "echo hello, engineer"
+  - label: ":test_tube: Building Image and Running tests"
+    command: "docker build -t test --target test ."
     agents:
       queue: fma-dev
 
   - wait
 
-  - label: ":docker: Building Test Image and Pushing to Cloudsmith"
+  - label: ":docker: Building Test ENV Image and Pushing to Cloudsmith"
     command: ops/scripts/build-and-push.sh
-    # branches: "main"
+    branches: "main"
     env:
       ENVIRONMENT: "test"
     agents:
@@ -19,7 +19,7 @@ steps:
 
   - label: ":k8s: Deploy to test"
     command: ops/scripts/deploy.sh
-    # branches: main
+    branches: main
     env:
       ENVIRONMENT: "test"
     agents:
@@ -30,7 +30,7 @@ steps:
 
   - wait
 
-  - label: ":docker: Building Production Image and Pushing to Cloudsmith"
+  - label: ":docker: Building Production ENV Image and Pushing to Cloudsmith"
     command: ops/scripts/build-and-push.sh
     branches: "main"
     env:

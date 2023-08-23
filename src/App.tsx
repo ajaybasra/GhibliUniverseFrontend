@@ -1,13 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import "./App.css";
-import Films from "./Components/Films/Films";
+import FilmCard from "./Components/FilmCard/FilmCard";
 import Header from "./Components/Header/Header";
 
 function App() {
+  const [selectedRating, setSelectedRating] = useState(0);
+
   return (
     <div className="App">
-      <Header></Header>
-      <Films></Films>
+      <Header />
+      <FilmCard
+        selectedRating={selectedRating}
+        setSelectedRating={setSelectedRating}
+      />
     </div>
   );
 }

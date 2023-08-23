@@ -7,4 +7,12 @@ function getAllFilms() {
   return axios.get(`${apiPath}/Film`);
 }
 
-export { getAllFilms };
+function createReview(filmId: string, rating: number) {
+  const body = {
+    rating: rating,
+  };
+
+  return axios.post(`${apiPath}/Review/${filmId}`, body);
+}
+
+export { getAllFilms, createReview };
