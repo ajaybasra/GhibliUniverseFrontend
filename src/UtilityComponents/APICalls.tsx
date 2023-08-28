@@ -7,6 +7,10 @@ function getAllFilms() {
   return axios.get(`${apiPath}/Film`);
 }
 
+function getAllVoiceActors() {
+  return axios.get(`${apiPath}/VoiceActor`);
+}
+
 function createReview(filmId: string, rating: number) {
   const body = {
     rating: rating,
@@ -15,4 +19,26 @@ function createReview(filmId: string, rating: number) {
   return axios.post(`${apiPath}/Review/${filmId}`, body);
 }
 
-export { getAllFilms, createReview };
+function createVoiceActor(name: string) {
+  const body = {
+    name: name,
+  };
+
+  return axios.post(`${apiPath}/VoiceActor`, body);
+}
+
+function linkVoiceActor(filmId: string, voiceActorId: string) {
+  return axios.post(`${apiPath}/Film/${filmId}/LinkVoiceActor`, voiceActorId, {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+}
+
+export {
+  getAllFilms,
+  createReview,
+  createVoiceActor,
+  linkVoiceActor,
+  getAllVoiceActors,
+};

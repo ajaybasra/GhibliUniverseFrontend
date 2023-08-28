@@ -10,3 +10,8 @@ export interface FilmResponseDTO {
     numberOfRatings: number;
   };
 }
+
+export interface VoiceActorResponseDTO {
+  id: string;
+  name: string;
+}

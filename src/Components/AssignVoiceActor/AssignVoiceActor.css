@@ -1,0 +1,11 @@
+.assign-voice-actor-button {
+  background-color: white !important;
+  border-radius: 5px;
+  color: black;
+  padding: 5px 10;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.assign-voice-actor-button:hover {
+  background-color: lightgray;
+}
