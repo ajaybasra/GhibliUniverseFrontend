@@ -13,6 +13,7 @@ import {
   VoiceActorResponseDTO,
 } from "../../UtilityComponents/Types";
 import AssignVoiceActorModal from "../AssignVoiceActorModal/AssignVoiceActorModal";
+import { Snackbar, Alert } from "@mui/material";
 
 interface HeaderProps {
   voiceActors: VoiceActorResponseDTO[];
@@ -23,6 +24,12 @@ function Header({ voiceActors, films }: HeaderProps) {
   const [voiceActorName, setVoiceActorName] = useState("");
   const [addVoiceActorOpen, setAddVoiceActorOpen] = useState(false);
   const [assignVoiceActorOpen, setAssignVoiceActorOpen] = useState(false);
+  const [addVoiceActorNotificationOpen, setAddVoiceActorNotificationOpen] =
+    useState(false);
+  const [
+    assignVoiceActorNotificationOpen,
+    setAssignVoiceActorNotificationOpen,
+  ] = useState(false);
 
   const handleAddVoiceActorOpen = () => {
     setAddVoiceActorOpen(true);
@@ -36,7 +43,7 @@ function Header({ voiceActors, films }: HeaderProps) {
     try {
       const response = await createVoiceActor(voiceActorName);
       console.log("Voice actor created:", response.data);
-      // setNotificationOpen(true);
+      setAddVoiceActorNotificationOpen(true);
       // await fetchFilms(); // hmm
     } catch (error) {
       console.error("Error creating voice actor:", error);
@@ -58,7 +65,7 @@ function Header({ voiceActors, films }: HeaderProps) {
     try {
       const response = await linkVoiceActor(filmId, voiceActorId);
       console.log("Voice actor now assigned:", response.data);
-      // setNotificationOpen(true);
+      setAssignVoiceActorNotificationOpen(true);
       // await fetchFilms(); // hmm
     } catch (error) {
       console.error("Error assigning voice actor:", error);
@@ -67,6 +74,30 @@ function Header({ voiceActors, films }: HeaderProps) {
 
   return (
     <header className="header">
+      <Snackbar
+        open={addVoiceActorNotificationOpen}
+        autoHideDuration={4000}
+        onClose={() => setAddVoiceActorNotificationOpen(false)}
+      >
+        <Alert
+          onClose={() => setAddVoiceActorNotificationOpen(false)}
+          severity="success"
+        >
+          Voice actor added successfully!
+        </Alert>
+      </Snackbar>
+      <Snackbar
+        open={assignVoiceActorNotificationOpen}
+        autoHideDuration={4000}
+        onClose={() => setAssignVoiceActorNotificationOpen(false)}
+      >
+        <Alert
+          onClose={() => setAssignVoiceActorNotificationOpen(false)}
+          severity="success"
+        >
+          Voice actor assigned successfully!
+        </Alert>
+      </Snackbar>
       <AddVoiceActorModal
         open={addVoiceActorOpen}
         onClose={handleAddVoiceActorClose}
