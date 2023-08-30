@@ -116,6 +116,7 @@ const FilmCard: React.FC<FilmCardProps> = ({
                   ).toFixed(2)} (${film.filmReviewInfo.numberOfRatings})`
                 : "This film has no reviews."}
             </h3>
+            <h3>See Voice Actors:</h3>
           </div>
         </div>
       ))}

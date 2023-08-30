@@ -7,6 +7,7 @@ import {
   VoiceActorResponseDTO,
 } from "./UtilityComponents/Types";
 import { getAllVoiceActors, getAllFilms } from "./UtilityComponents/APICalls";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 function App() {
   const [selectedRating, setSelectedRating] = useState(0);
@@ -37,13 +38,26 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
-      <Header voiceActors={voiceActors} films={films} />
-      <FilmCard
-        selectedRating={selectedRating}
-        setSelectedRating={setSelectedRating}
-      />
-    </div>
+    <Router>
+      <div className="App">
+        <Header
+          voiceActors={voiceActors}
+          films={films}
+          fetchVoiceActors={fetchVoiceActors}
+        />
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <FilmCard
+                selectedRating={selectedRating}
+                setSelectedRating={setSelectedRating}
+              />
+            }
+          ></Route>
+        </Routes>
+      </div>
+    </Router>
   );
 }
 

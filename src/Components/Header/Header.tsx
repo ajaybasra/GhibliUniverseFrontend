@@ -14,13 +14,15 @@ import {
 } from "../../UtilityComponents/Types";
 import AssignVoiceActorModal from "../AssignVoiceActorModal/AssignVoiceActorModal";
 import { Snackbar, Alert } from "@mui/material";
+import { Link } from "react-router-dom";
 
 interface HeaderProps {
   voiceActors: VoiceActorResponseDTO[];
   films: FilmResponseDTO[];
+  fetchVoiceActors: () => Promise<void>;
 }
 
-function Header({ voiceActors, films }: HeaderProps) {
+function Header({ voiceActors, films, fetchVoiceActors }: HeaderProps) {
   const [voiceActorName, setVoiceActorName] = useState("");
   const [addVoiceActorOpen, setAddVoiceActorOpen] = useState(false);
   const [assignVoiceActorOpen, setAssignVoiceActorOpen] = useState(false);
@@ -44,7 +46,7 @@ function Header({ voiceActors, films }: HeaderProps) {
       const response = await createVoiceActor(voiceActorName);
       console.log("Voice actor created:", response.data);
       setAddVoiceActorNotificationOpen(true);
-      // await fetchFilms(); // hmm
+      await fetchVoiceActors(); // hmm
     } catch (error) {
       console.error("Error creating voice actor:", error);
     }
@@ -114,9 +116,15 @@ function Header({ voiceActors, films }: HeaderProps) {
       />
       <div className="header--div">
         <div className="logo">
-          <img src={Logo} height={65} alt="Logo" />
+          <Link to="/">
+            <img src={Logo} height={65} alt="Logo" />
+          </Link>
         </div>
-        <h2 className="header--title">Ghibli Universe</h2>
+        <h2 className="header--title">
+          <Link className="header--title" to="/">
+            Ghibli Universe
+          </Link>
+        </h2>
       </div>
       <div className="header--buttons">
         <AddVoiceActor onClick={handleAddVoiceActorOpen} />

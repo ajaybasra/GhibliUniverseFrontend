@@ -9,6 +9,7 @@
 }
 
 .header--title {
+  color: inherit;
   font-size: 1.5rem;
   padding-top: 12.5px;
   font-family: Papyrus, Helvetica, sans-serif, serif;
