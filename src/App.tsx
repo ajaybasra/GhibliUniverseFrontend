@@ -7,7 +7,13 @@ import {
   VoiceActorResponseDTO,
 } from "./UtilityComponents/Types";
 import { getAllVoiceActors, getAllFilms } from "./UtilityComponents/APICalls";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  useNavigate,
+} from "react-router-dom";
+import VoiceActors from "./Pages/VoiceActors";
 
 function App() {
   const [selectedRating, setSelectedRating] = useState(0);
@@ -55,6 +61,7 @@ function App() {
               />
             }
           ></Route>
+          <Route path="/VoiceActors" element={<VoiceActors />}></Route>
         </Routes>
       </div>
     </Router>

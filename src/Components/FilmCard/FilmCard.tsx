@@ -5,6 +5,7 @@ import ReviewModal from "../ReviewModal/ReviewModal";
 import { FilmResponseDTO } from "../../UtilityComponents/Types";
 import { getAllFilms, createReview } from "../../UtilityComponents/APICalls";
 import { Snackbar, Alert } from "@mui/material";
+import { Link } from "react-router-dom";
 
 interface FilmCardProps {
   selectedRating: number;
@@ -116,7 +117,18 @@ const FilmCard: React.FC<FilmCardProps> = ({
                   ).toFixed(2)} (${film.filmReviewInfo.numberOfRatings})`
                 : "This film has no reviews."}
             </h3>
-            <h3>See Voice Actors:</h3>
+            <h3>
+              <Link
+                className="filmcard--overview-voiceactors"
+                to="/VoiceActors"
+                state={{
+                  filmId: film.id,
+                  filmTitle: film.title,
+                }}
+              >
+                See Voice Actors:
+              </Link>
+            </h3>
           </div>
         </div>
       ))}

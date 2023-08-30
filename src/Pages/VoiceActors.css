@@ -1,0 +1,15 @@
+.voiceactors-table {
+  width: 100%;
+  margin-top: 16px;
+}
+
+.voiceactors-header {
+  font-weight: bold;
+  background-color: #f2f2f2;
+  padding: 12px;
+  text-align: left;
+}
+
+.voiceactors tr:hover {
+  background-color: #f5f5f5;
+}

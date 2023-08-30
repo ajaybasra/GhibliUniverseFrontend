@@ -11,6 +11,10 @@ function getAllVoiceActors() {
   return axios.get(`${apiPath}/VoiceActor`);
 }
 
+function getVoiceActorsByFilm(filmId: string) {
+  return axios.get(`${apiPath}/Film/${filmId}/voiceActors`);
+}
+
 function createReview(filmId: string, rating: number) {
   const body = {
     rating: rating,
@@ -28,12 +32,27 @@ function createVoiceActor(name: string) {
 }
 
 function linkVoiceActor(filmId: string, voiceActorId: string) {
+  const body = { voiceActorId };
   return axios.post(`${apiPath}/Film/${filmId}/LinkVoiceActor`, voiceActorId, {
     headers: {
       "Content-Type": "application/json",
     },
   });
 }
+// function linkVoiceActor(filmId: string, voiceActorId: string) {
+//   const body = { voiceActorId };
+//   return axios.post(`${apiPath}/Film/${filmId}/LinkVoiceActor`, body);
+// }
+// function linkVoiceActor(filmId: string, voiceActorId: string) {
+//   const body = { voiceActorId }; // Just the raw value, not an object
+//   const config = {
+//     headers: {
+//       "Content-Type": "text/plain; charset=utf-8",
+//     },
+//   };
+
+//   return axios.post(`${apiPath}/Film/${filmId}/LinkVoiceActor`, body, config);
+// }
 
 export {
   getAllFilms,
@@ -41,4 +60,5 @@ export {
   createVoiceActor,
   linkVoiceActor,
   getAllVoiceActors,
+  getVoiceActorsByFilm,
 };
