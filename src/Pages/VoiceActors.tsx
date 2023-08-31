@@ -19,7 +19,11 @@ import {
 } from "@mui/material";
 import "./VoiceActors.css";
 
-const VoiceActors = () => {
+const VoiceActors = ({
+  isVoiceActorAssigned,
+}: {
+  isVoiceActorAssigned: boolean;
+}) => {
   const { state } = useLocation();
   const [voiceActors, setVoiceActors] = useState<VoiceActorResponseDTO[]>([]);
   const [filmsByVoiceActor, setFilmsByVoiceActor] = useState<{
@@ -34,21 +38,6 @@ const VoiceActors = () => {
       console.error("Error fetching voice actors for film:", error);
     }
   };
-
-  useEffect(() => {
-    fetchVoiceActorsByFilm();
-  }, []);
-
-  //   const fetchFilmsByVoiceActor = async (voiceActorId: string) => {
-  //     try {
-  //       const response = await getFilmsByVoiceActor(voiceActorId);
-  //       return response.data
-  //         .map((film: FilmResponseDTO) => film.title)
-  //         .join(", ");
-  //     } catch (error) {
-  //       console.error("Error fetching films for voice actor:", error);
-  //     }
-  //   };
 
   const fetchFilmsForVoiceActors = async () => {
     const filmsMap: { [key: string]: string } = {};
@@ -70,13 +59,17 @@ const VoiceActors = () => {
   };
 
   useEffect(() => {
-    if (voiceActors.length > 0) {
+    const fetchData = async () => {
+      await fetchVoiceActorsByFilm();
       fetchFilmsForVoiceActors();
-    }
-  }, [voiceActors]);
+    };
+
+    fetchData();
+  }, [voiceActors, isVoiceActorAssigned]);
 
   return (
     <TableContainer component={Paper}>
+      {state.filmTitle}
       <Table className="voiceactors-table" aria-label="Voice Actors Table">
         <TableHead>
           <TableRow>

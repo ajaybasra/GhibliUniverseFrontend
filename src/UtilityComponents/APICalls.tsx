@@ -36,7 +36,6 @@ function createVoiceActor(name: string) {
 }
 
 function linkVoiceActor(filmId: string, voiceActorId: string) {
-  const body = { voiceActorId };
   return axios.post(`${apiPath}/Film/${filmId}/LinkVoiceActor`, voiceActorId, {
     headers: {
       "Content-Type": "application/json",

@@ -7,18 +7,14 @@ import {
   VoiceActorResponseDTO,
 } from "./UtilityComponents/Types";
 import { getAllVoiceActors, getAllFilms } from "./UtilityComponents/APICalls";
-import {
-  BrowserRouter as Router,
-  Route,
-  Routes,
-  useNavigate,
-} from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import VoiceActors from "./Pages/VoiceActors";
 
 function App() {
   const [selectedRating, setSelectedRating] = useState(0);
   const [voiceActors, setVoiceActors] = useState<VoiceActorResponseDTO[]>([]);
   const [films, setFilms] = useState<FilmResponseDTO[]>([]);
+  const [isVoiceActorAssigned, setIsVoiceActorAssigned] = useState(false);
 
   const fetchVoiceActors = async () => {
     try {
@@ -43,6 +39,10 @@ function App() {
     fetchFilms();
   }, []);
 
+  const onAssignVoiceActor = () => {
+    setIsVoiceActorAssigned(!isVoiceActorAssigned);
+  };
+
   return (
     <Router>
       <div className="App">
@@ -50,6 +50,7 @@ function App() {
           voiceActors={voiceActors}
           films={films}
           fetchVoiceActors={fetchVoiceActors}
+          onAssignVoiceActor={onAssignVoiceActor}
         />
         <Routes>
           <Route
@@ -61,7 +62,12 @@ function App() {
               />
             }
           ></Route>
-          <Route path="/VoiceActors" element={<VoiceActors />}></Route>
+          <Route
+            path="/VoiceActors"
+            element={
+              <VoiceActors isVoiceActorAssigned={isVoiceActorAssigned} />
+            }
+          ></Route>
         </Routes>
       </div>
     </Router>

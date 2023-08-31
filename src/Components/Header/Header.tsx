@@ -20,9 +20,15 @@ interface HeaderProps {
   voiceActors: VoiceActorResponseDTO[];
   films: FilmResponseDTO[];
   fetchVoiceActors: () => Promise<void>;
+  onAssignVoiceActor: () => void;
 }
 
-function Header({ voiceActors, films, fetchVoiceActors }: HeaderProps) {
+function Header({
+  voiceActors,
+  films,
+  fetchVoiceActors,
+  onAssignVoiceActor,
+}: HeaderProps) {
   const [voiceActorName, setVoiceActorName] = useState("");
   const [addVoiceActorOpen, setAddVoiceActorOpen] = useState(false);
   const [assignVoiceActorOpen, setAssignVoiceActorOpen] = useState(false);
@@ -46,7 +52,7 @@ function Header({ voiceActors, films, fetchVoiceActors }: HeaderProps) {
       const response = await createVoiceActor(voiceActorName);
       console.log("Voice actor created:", response.data);
       setAddVoiceActorNotificationOpen(true);
-      await fetchVoiceActors(); // hmm
+      await fetchVoiceActors();
     } catch (error) {
       console.error("Error creating voice actor:", error);
     }
@@ -68,7 +74,7 @@ function Header({ voiceActors, films, fetchVoiceActors }: HeaderProps) {
       const response = await linkVoiceActor(filmId, voiceActorId);
       console.log("Voice actor now assigned:", response.data);
       setAssignVoiceActorNotificationOpen(true);
-      // await fetchFilms(); // hmm
+      onAssignVoiceActor();
     } catch (error) {
       console.error("Error assigning voice actor:", error);
     }
