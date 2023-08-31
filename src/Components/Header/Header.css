@@ -20,6 +20,7 @@
   align-items: center;
   justify-content: center;
   flex: 1;
+  padding-left: 11%;
 }
 
 .header--buttons {

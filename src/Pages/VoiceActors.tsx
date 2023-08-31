@@ -68,8 +68,16 @@ const VoiceActors = ({
   }, [voiceActors, isVoiceActorAssigned]);
 
   return (
-    <TableContainer component={Paper}>
-      {state.filmTitle}
+    <TableContainer
+      component={Paper}
+      style={{
+        margin: "0 auto",
+        textAlign: "center",
+        height: 400,
+        width: "70%",
+      }}
+    >
+      <h3 className="voiceactors-title">{state.filmTitle} Voice Actors</h3>
       <Table className="voiceactors-table" aria-label="Voice Actors Table">
         <TableHead>
           <TableRow>
