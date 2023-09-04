@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { Dispatch, SetStateAction, useState } from "react";
 import {
   Button,
   Modal,
@@ -25,6 +25,7 @@ interface AssignVoiceActorModalProps {
   ) => Promise<void>;
   voiceActors: VoiceActorResponseDTO[];
   films: FilmResponseDTO[];
+  setAssignVoiceActorNotificationOpen: Dispatch<SetStateAction<boolean>>;
 }
 
 const AssignVoiceActorModal: React.FC<AssignVoiceActorModalProps> = ({
@@ -33,6 +34,7 @@ const AssignVoiceActorModal: React.FC<AssignVoiceActorModalProps> = ({
   handleAssignVoiceActorSubmit,
   voiceActors,
   films,
+  setAssignVoiceActorNotificationOpen,
 }) => {
   const [selectedVoiceActor, setSelectedVoiceActor] =
     useState<VoiceActorResponseDTO | null>(null);
@@ -47,6 +49,7 @@ const AssignVoiceActorModal: React.FC<AssignVoiceActorModalProps> = ({
         selectedFilm.id.toString(),
         selectedVoiceActor.id.toString()
       );
+      setAssignVoiceActorNotificationOpen(true);
       onClose();
     } else {
       setValidationError(true);

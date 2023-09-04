@@ -9,6 +9,7 @@ import {
 import { getAllVoiceActors, getAllFilms } from "./UtilityComponents/APICalls";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import VoiceActors from "./Pages/VoiceActors";
+import { linkVoiceActor } from "./UtilityComponents/APICalls";
 
 function App() {
   const [selectedRating, setSelectedRating] = useState(0);
@@ -39,6 +40,19 @@ function App() {
     fetchFilms();
   }, []);
 
+  const handleAssignVoiceActorSubmit = async (
+    filmId: string,
+    voiceActorId: string
+  ) => {
+    try {
+      const response = await linkVoiceActor(filmId, voiceActorId);
+      console.log("Voice actor now assigned:", response.data);
+      onAssignVoiceActor();
+    } catch (error) {
+      console.error("Error assigning voice actor:", error);
+    }
+  };
+
   const onAssignVoiceActor = () => {
     setIsVoiceActorAssigned(!isVoiceActorAssigned);
   };
@@ -51,6 +65,7 @@ function App() {
           films={films}
           fetchVoiceActors={fetchVoiceActors}
           onAssignVoiceActor={onAssignVoiceActor}
+          handleAssignVoiceActorSubmit={handleAssignVoiceActorSubmit}
         />
         <Routes>
           <Route

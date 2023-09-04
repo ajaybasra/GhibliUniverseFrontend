@@ -21,6 +21,10 @@ interface HeaderProps {
   films: FilmResponseDTO[];
   fetchVoiceActors: () => Promise<void>;
   onAssignVoiceActor: () => void;
+  handleAssignVoiceActorSubmit: (
+    filmId: string,
+    voiceActorId: string
+  ) => Promise<void>;
 }
 
 function Header({
@@ -28,6 +32,7 @@ function Header({
   films,
   fetchVoiceActors,
   onAssignVoiceActor,
+  handleAssignVoiceActorSubmit,
 }: HeaderProps) {
   const [voiceActorName, setVoiceActorName] = useState("");
   const [addVoiceActorOpen, setAddVoiceActorOpen] = useState(false);
@@ -64,20 +69,6 @@ function Header({
 
   const handleAssignVoiceActorClose = () => {
     setAssignVoiceActorOpen(false);
-  };
-
-  const handleAssignVoiceActorSubmit = async (
-    filmId: string,
-    voiceActorId: string
-  ) => {
-    try {
-      const response = await linkVoiceActor(filmId, voiceActorId);
-      console.log("Voice actor now assigned:", response.data);
-      setAssignVoiceActorNotificationOpen(true);
-      onAssignVoiceActor();
-    } catch (error) {
-      console.error("Error assigning voice actor:", error);
-    }
   };
 
   return (
@@ -119,6 +110,9 @@ function Header({
         handleAssignVoiceActorSubmit={handleAssignVoiceActorSubmit}
         voiceActors={voiceActors}
         films={films}
+        setAssignVoiceActorNotificationOpen={
+          setAssignVoiceActorNotificationOpen
+        }
       />
       <div className="header--div">
         <div className="logo">
