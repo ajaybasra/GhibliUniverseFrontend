@@ -2,7 +2,12 @@
 
 A React-based frontend application designed to let users interact with the Ghibli Universe API for managing voice actors, films, and reviews associated with Studio Ghibli films.
 
-https://github.com/myob-fma/ajay-ghibli-frontend/assets/66146062/3365002f-e008-4573-96db-c676dea8314c
+[https://github.com/myob-fma/ajay-ghibli-frontend/assets/66146062/3365002f-e008-4573-96db-c676dea8314c
+](https://github.com/ajaybasra/GhibliUniverseFrontend/assets/66146062/edc5f985-f5ab-4181-a448-82d395062520
+)
+
+
+
 
 
 ## Usage
